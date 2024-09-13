@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class start {
     public static void main(String[] args) {
@@ -6,7 +7,9 @@ public class start {
         List<Integer> random = Arrays.asList(nums);
         Set<Integer> inputNum = new LinkedHashSet<>();//입력값
         List<String> result = new ArrayList<>();//결과
+        final String NUMBER_REG = "^[1-9]$";
         boolean exit =  true;
+        Scanner sc = new Scanner(System.in);
 
         //입력
         while(exit){
@@ -25,15 +28,22 @@ public class start {
                 System.out.println("중복되지 않는 일의 자리 양의 정수 3개를 입력해주십시오.");
                 System.out.println("[예시 : 3 5 7]");
                 System.out.println();
-                Scanner sc = new Scanner(System.in);
+
 
                 while(inputNum.size() != 3){
+
                     System.out.println((inputNum.size()+1)+"번째 번호를 입력하십시오");
                     String num = sc.next();
-                    inputNum.add(Integer.parseInt(num));
+                    if(Pattern.matches(NUMBER_REG, num)){
+                        inputNum.add(Integer.parseInt(num));
+                    }else{
+                        System.out.println("경고!) 잘못된 입력값 입니다");
+                        System.out.println("0을 제외한 일의 자리, 양의 정수만 입력하실 수 있습니다.");
+                        System.out.println();
+                    }
+
                 }
 
-                //메서드화
                 Iterator<Integer> iter = inputNum.iterator();
                 for(int i = 0; i < choice.size(); i++){
                     int s = iter.next();
@@ -49,6 +59,7 @@ public class start {
 
                 success = Collections.frequency(result, "스트라이크");
                 System.out.println(Collections.frequency(result, "스트라이크")+"스트라이크 "+Collections.frequency(result, "볼")+"볼 "+Collections.frequency(result, "아웃")+"아웃");
+                System.out.println();
                 inputNum.clear();
                 result.clear();
                 count++;
@@ -75,6 +86,7 @@ public class start {
 
 //while문이 멈추지 않는 문제
 //Collections.frequency(result, "스트라이크")!=3 을 넣었더니 당연히 인식하지 않음
+//변수 새로 만듦
 
 //while문이 무한으로 도는 문제
 //다른 whlie문으로 못들어가고 무한 반복함
@@ -86,9 +98,9 @@ public class start {
 //if문이 적용이 안됨 NoSuchElementException 발생
 //iter.next()를 바로 사용하지 않고 int 값에 넣어서 반복
 
+//정규표현식이 인식되지 않는 문제
+//equals. 쓰지말고 Pattern.matches 써야한다...
+
 //고급문제
 //숫자 수 늘리기
 //맞추는 횟수 지정하기
-
-//추가사항
-//예외처리
