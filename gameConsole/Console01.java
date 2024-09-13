@@ -2,8 +2,9 @@ package gameConsole;
 
 //Lv01
 
-import java.util.*;
 import GameUtil.Util01;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class Console01 {
     public static void main(String[] args) {
@@ -28,7 +29,6 @@ public class Console01 {
 
                 util.playGame();
 
-                System.out.println("스트라이크 수"+util.getSuccess());
                 count++;
 
                 if(util.getSuccess() == 3){
