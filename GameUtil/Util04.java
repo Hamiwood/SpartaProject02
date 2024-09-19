@@ -1,6 +1,6 @@
 package GameUtil;
 
-//Lv03
+//Lv04
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -16,8 +16,9 @@ public class Util04 {
     private List<String> result = new ArrayList<>();//결과
     private int success = 0; // 스트라이크가 몇 개인지 확인
     private boolean exit =  true; // 반복문
-    private List<String> saveLog = new ArrayList<>();; //결과 로그 저장
-    private int mode = 3;
+    private List<Integer> saveLog = new ArrayList<>(); //결과 로그 저장
+    private List<String> modeLog = new ArrayList<>(); //mode 로그 저장
+    private int mode = 3; // 게임 난이도
 
     //getter setter
     public List<String> getRandom() {
@@ -41,7 +42,7 @@ public class Util04 {
     public void setSuccess(List<String> result) {
         this.success = Collections.frequency(result, "스트라이크");
     }
-    public void setSaveLog(String count) {
+    public void setSaveLog(int count) {
         saveLog.add(count);
     }
     public int getMode() {
@@ -49,6 +50,9 @@ public class Util04 {
     }
     public void setMode(int mode) {
         this.mode = mode;
+    }
+    public void setModeLog(String mode) {
+        modeLog.add(mode);
     }
 
     //랜덤한 3개를 골라오는 메서드
@@ -83,6 +87,32 @@ public class Util04 {
         }
     }
 
+    //난이도 설정하는 메서드
+    public void modeSetting(){
+        System.out.println("원하시는 난이도를 선택하세요");
+        System.out.println("[1]이지모드 : 숫자 3개 | [2]노말모드 : 숫자 4개 | [3]하드모드 : 숫자 5개");
+        String selMode = sc.next();
+        switch(selMode){
+            case "1":
+                mode = 3;
+                System.out.println("[이지모드로 설정되었습니다]");
+                System.out.println();
+                break;
+            case "2":
+                mode = 4;
+                System.out.println("[노멀모드로 설정되었습니다]");
+                System.out.println();
+                break;
+            case "3":
+                mode = 5;
+                System.out.println("[하드모드로 설정되었습니다]");
+                System.out.println();
+                break;
+            default:
+                System.out.println("가능한 번호가 아닙니다");
+        }
+    }
+
     //게임을 진행하는 메서드
     public void playGame(){
         Iterator<String> iter = inputNum.iterator();
@@ -104,13 +134,34 @@ public class Util04 {
 
     //이제까지의 게임 결과를 불러오는 메서드
     public void bringLog(){
+        String modeStr = "";
         if(saveLog.isEmpty()){
             System.out.println("!로그가 존재하지 않습니다!");
         }else{
             System.out.println("---게임 로그---");
             for(int i = 0; i < saveLog.size(); i++){
-                System.out.println("["+(i+1)+"번째 게임] "+saveLog.get(i)+"회");
+                if(modeLog.get(i).equals("3")){
+                    modeStr = "이지모드";
+                }else if(modeLog.get(i).equals("4")){
+                    modeStr = "노말모드";
+                }else if(modeLog.get(i).equals("5")){
+                    modeStr = "하드모드";
+                }
+                System.out.println("("+modeStr+") ["+(i+1)+"번째 게임] "+saveLog.get(i)+"회");
             }
         }
     }
+
+    //결과 갱신을 알려주는 메서드
+    public void rankAlarm(int count){
+        int min = 100000;
+        for(int i : saveLog){
+            min = Math.min(min, i);
+        }
+        if(min != 100000 && min > count){
+            System.out.println("기록을 갱신했습니다! [이전 최대 기록: "+min+"번 >> 현 최대 기록 : "+count+"번]");
+        }
+    }
 }
+
+//min의 기본 값이 0이라 최솟값이 계속 0으로 설정되는 문제 >> 기본값을 10만으로 바꿈

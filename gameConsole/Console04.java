@@ -14,11 +14,13 @@ public class Console04 {
 
         //입력
         while(util.isExit()){
+            //초기화
             util.getChoice().clear();
             util.setSuccess(util.getResult());
             String sel = "";
             int count = 0;
-            Collections.shuffle(util.getRandom());// 셔플
+            Collections.shuffle(util.getRandom());
+
             util.pickThree();
 
             System.out.println("새로운 게임을 시작합니다!");
@@ -26,26 +28,10 @@ public class Console04 {
             sel = sc.next();
 
             if(sel.equals("0")){
-                System.out.println("원하시는 난이도를 선택하세요");
-                System.out.println("[1]이지모드 : 숫자 3개 | [2]노말모드 : 숫자 4개 | [3]하드모드 : 숫자 5개");
-                String selMode = sc.next();
-                switch(selMode){
-                    case "1":
-                        util.setMode(3);
-                        break;
-                    case "2":
-                        util.setMode(4);
-                        break;
-                    case "3":
-                        util.setMode(5);
-                        break;
-                    default:
-                        System.out.println("가능한 번호가 아닙니다");
-                }
+                util.modeSetting();
 
             }else if(sel.equals("1")){
                 while(util.getSuccess() != 3){
-                    System.out.println(util.getChoice());
                     System.out.println("중복되지 않는 일의 자리 양의 정수 "+util.getMode()+"개를 입력해주십시오.");
                     System.out.println();
 
@@ -57,7 +43,9 @@ public class Console04 {
                     if(util.getSuccess() == util.getMode()){
                         System.out.println();
                         System.out.println(count+"번의 시도만에 정답을 맞췄습니다!");
-                        util.setSaveLog(Integer.toString(count));
+                        util.rankAlarm(count);
+                        util.setSaveLog(count);
+                        util.setModeLog(String.valueOf(util.getMode()));
                         System.out.println("게임 재시작 : 1 | 게임 기록 확인 : 2 | 게임 종료 : 3");
                         sel = sc.next();
                         if(sel.equals("1")){
@@ -93,6 +81,3 @@ public class Console04 {
         }
     }
 }
-
-
-//
