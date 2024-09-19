@@ -67,8 +67,3 @@ public class Console02 {
         }
     }
 }
-//게임에서 빠져나가지 못하는 문제 >> break후, sel값 초기화
-//입력 조건 절에서 Integer.parseInt의 조건이 앞에 와 NumberFormatException이 뜨는 현상
-//>>컬렉션과 배열을 모두 String으로 수정함
-//sel2 에서 NosuchElementException발생
-//>>choice 초기화를 안해서 값이 더해져 들어간 것이엇음

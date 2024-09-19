@@ -91,17 +91,3 @@ public class Util01 {
     }
 
 }
-
-
-//메서드화 시키는 과정에서 clear가 안되는 경우
-//정확히는 choice의 클리어가 되지 않았던 것임
-//1번을 누르면 choice가 clear되도록
-
-//success가 갱신되지 않는 경우
-// private int success = Collections.frequency(result, "스트라이크");
-// private int success = 0;
-// setSuccess를 바꿈
-
-//두번째 시도부터 result가 비어버리는 경우
-//첫번째 while문으로 돌아가지 않아 choice에 값이 담기지 않았다.
-//break로 두번째 while문을 벗어나게 함

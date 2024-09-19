@@ -31,7 +31,7 @@ public class Console04 {
                 util.modeSetting();
 
             }else if(sel.equals("1")){
-                while(util.getSuccess() != 3){
+                while(util.getSuccess() != util.getMode()){
                     System.out.println("중복되지 않는 일의 자리 양의 정수 "+util.getMode()+"개를 입력해주십시오.");
                     System.out.println();
 

@@ -48,9 +48,6 @@ public class Util04 {
     public int getMode() {
         return mode;
     }
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
     public void setModeLog(String mode) {
         modeLog.add(mode);
     }
@@ -163,5 +160,3 @@ public class Util04 {
         }
     }
 }
-
-//min의 기본 값이 0이라 최솟값이 계속 0으로 설정되는 문제 >> 기본값을 10만으로 바꿈

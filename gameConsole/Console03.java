@@ -12,7 +12,6 @@ public class Console03 {
         Util03 util = new Util03();
         Scanner sc = new Scanner(System.in);
 
-        //입력
         while(util.isExit()){
             util.getChoice().clear();
             util.setSuccess(util.getResult());
@@ -47,7 +46,6 @@ public class Console03 {
                             util.setExit(true);
                             break;
                         }else if(sel.equals("2")){
-                            //게임 기록 확인
                             util.bringLog();
                             util.setExit(true);
                             System.out.println();
@@ -76,6 +74,3 @@ public class Console03 {
         }
     }
 }
-
-
-//지저분한 코드 정리
