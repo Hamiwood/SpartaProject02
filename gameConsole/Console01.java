@@ -26,7 +26,6 @@ public class Console01 {
                 System.out.println();
 
                 util.inputNumber();
-
                 util.playGame();
 
                 count++;
